@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0D1120">
+<title>얼팔타입 · 관상 × 사주 × 성격유형</title>
+<meta name="description" content="바람·불·땅·물 네 무리, 32가지 동물로 만나는 나의 타입과 친구 궁합. 사진과 생년월일은 기기 안에서만 계산해요.">
+<meta property="og:title" content="얼팔타입 · 나와 친구의 타입 이야기">
+<meta property="og:description" content="32가지 동물 중 나는 누구? 친구와 궁합 카드를 나누고 지도에 모아 봐요. 매일 가볍게 즐기는 얼팔타입.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="얼팔타입">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:url" content="https://josephpark1004.github.io/eolpaltype/">
+<meta property="og:image" content="https://josephpark1004.github.io/eolpaltype/img/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="얼팔타입 · 얼굴, 생일, 성격유형으로 만드는 나의 캐릭터 카드">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="얼팔타입 · 나와 친구의 타입 이야기">
+<meta name="twitter:description" content="32가지 동물 중 나는 누구? 친구와 궁합 카드를 나누고 지도에 모아 봐요.">
+<meta name="twitter:image" content="https://josephpark1004.github.io/eolpaltype/img/og-image.png">
+<link rel="canonical" href="https://josephpark1004.github.io/eolpaltype/">
+<meta name="robots" content="index, follow">
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="16x16" href="img/favicon-16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32.png">
+<link rel="icon" type="image/png" sizes="48x48" href="img/favicon-48.png">
+<link rel="apple-touch-icon" sizes="180x180" href="img/apple-touch-icon.png">
+<script>/* 파일로 바로 열 때(file://)는 브라우저가 매니페스트를 막아 오류가 나므로, 웹 서버로 올렸을 때만 연결해요. */
+if (/^https?:$/.test(location.protocol)) { var m = document.createElement('link'); m.rel = 'manifest'; m.href = 'site.webmanifest'; document.head.appendChild(m); }</script>
+<link rel="stylesheet" href="css/style.css?v=12q">
+<link rel="stylesheet" href="css/v12.css?v=12q">
+<meta name="eolpal-version" content="v12q">
+</head>
+<body>
+<div class="sky" aria-hidden="true"></div>
+<div id="app">
+  <header class="appbar">
+    <button class="iconbtn" id="backBtn" aria-label="뒤로"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></button>
+    <div class="wordmark" id="wordmark"></div>
+    <span class="iconbtn ghost"></span>
+  </header>
+  <div class="steps hidden" id="steps"><i></i><i></i><i></i></div>
+
+  <!-- 0. 시작 -->
+  <section class="screen active" id="s-home" data-back="">
+    <div class="home">
+      <p class="eyebrow">내 얼굴의 타입을 읽어 드려요</p>
+      <h1 class="h1 big">얼굴에 성격유형이<br>써 있다면?</h1>
+      <p class="body">얼굴, 생일, 성격유형으로 만드는 나의 캐릭터 카드<br><span class="cap">검사지 말고, 얼굴로.</span></p>
+      <div class="portrait home-art"><div class="halo"></div><div class="pf" data-face="gold"></div></div>
+      <div class="chips" style="justify-content:center;margin:6px 0 16px"><span class="chip gold">① 생일 · 성격유형</span><span class="chip jade">② 셀카 한 장</span><span class="chip">③ 나의 캐릭터 카드</span></div>
+      <div class="note"><span class="lock" data-lock></span>재미로 보는 콘텐츠예요. 사진은 저장하거나 전송하지 않아요.</div>
+      <p class="cap" style="margin-top:10px"><span data-app-name data-josa="은는"></span> 만 14세 이상만 이용할 수 있어요.</p>
+
+    </div>
+    <div class="cta-bar"><button class="btn primary" id="startBtn">시작하기</button></div>
+  </section>
+
+  <!-- 1. 기본 정보 -->
+  <section class="screen" id="s-info" data-back="s-home" data-step="1">
+    <p class="eyebrow">1단계 · 기본 정보</p>
+    <h2 class="h1">나에 대해 조금만 알려 주세요</h2>
+    <p class="body">사주는 생년월일시로, 성격유형은 직접 고른 걸로 봐요.</p>
+    <form id="infoForm" novalidate>
+      <div class="label">이름 또는 닉네임 <span class="cap" id="nameCnt">0/10</span></div>
+      <input class="field" id="nick" maxlength="10" placeholder="예: 별빛" autocomplete="off">
+
+      <div class="label">생년월일 <span class="cap">양력·음력 선택</span></div>
+      <div class="birth-row">
+        <div class="seg" id="calSeg"><button type="button" class="on" data-v="solar">양력</button><button type="button" data-v="lunar">음력</button></div>
+        <div class="field date"><input id="by" inputmode="numeric" maxlength="4" placeholder="1997"><span>.</span><input id="bm" inputmode="numeric" maxlength="2" placeholder="04"><span>.</span><input id="bd" inputmode="numeric" maxlength="2" placeholder="18"></div>
+      </div>
+      <label class="check hidden" id="leapWrap"><input type="checkbox" id="leap"><i></i>윤달이에요</label>
+      <p class="cap" style="margin-top:8px"><span data-app-name data-josa="은는"></span> 만 14세 이상만 이용할 수 있어요. 입력한 생년월일로 이 기기 안에서만 나이를 확인하고, 생년월일은 서버로 보내지 않아요.</p>
+
+      <div class="label">태어난 시간 <label class="check inline"><input type="checkbox" id="timeUnknown"><i></i>잘 몰라요</label></div>
+      <div class="field time"><input type="time" id="bt" value="07:30"><span class="cap" id="sijin"></span></div>
+
+      <div class="label">성별</div>
+      <div class="seg wide" id="genderSeg"><button type="button" data-v="M">남성</button><button type="button" class="on" data-v="F">여성</button><button type="button" data-v="N">선택 안 함</button></div>
+
+      <div class="label">성격유형(MBTI) 입력 <span class="cap">축마다 하나씩</span></div>
+      <p class="cap" style="margin:-2px 0 8px">알고 있는 내 성격유형 4글자를 골라 주세요. <span data-app-name data-josa="은는"></span> 공식 성격유형 검사가 아니에요. 알고 있는 유형을 직접 골라 주시면, 그 값으로 재미있게 풀어 드려요.</p>
+      <div class="mbti-axes" id="mbtiAxes"></div>
+      <div class="unk-row"><label class="check"><input type="checkbox" id="mbtiUnknown"><i></i>모름</label><button type="button" class="linkbtn" id="toTest">성격유형 간단 질문 12개로 골라 보기 ›</button></div>
+      <p class="cap hidden" id="unkNote" style="margin-top:6px">'모름'을 고르고 사진을 넣으면 사진 특징으로 본 재미용 추정을 사용해요. 검증된 성격이 아니에요. 사진이 없으면 간단 질문 12개로 방향을 골라요.</p>
+
+      <details class="adv"><summary>계산 옵션</summary>
+        <label class="check"><input type="checkbox" id="corr" checked><i></i>한국 경도 보정(-30분) 적용</label>
+        <label class="check"><input type="checkbox" id="yaja"><i></i>야자시 적용(23시~자정은 같은 날로)</label>
+        <p class="cap">1954~61년 표준시 변경과 1948~51년·1955~60년·1987~88년 서머타임을 반영해요. 전환으로 두 번 있거나 없었던 시각은 확인 안내 후 계산을 멈춰요.</p>
+      </details>
+      <p class="err hidden" id="infoErr"></p>
+    </form>
+    <div class="cta-bar"><button class="btn primary" id="infoNext">다음 · 사진 올리기</button></div>
+  </section>
+
+  <!-- 1-1. MBTI 12문항 -->
+  <section class="screen" id="s-test" data-back="s-info">
+    <p class="eyebrow" id="testProg">성격유형 간단 질문 · 1 / 12</p>
+    <div class="progress"><i id="testBar"></i></div>
+    <h2 class="h1 q" id="testQ"></h2>
+    <div class="answers"><button class="choice" id="ansA"></button><button class="choice" id="ansB"></button></div>
+    <p class="cap">재미로 보는 간단 질문이에요. 공식 성격유형 검사가 아니에요.</p>
+  </section>
+
+  <!-- 2. 사진 -->
+  <section class="screen" id="s-photo" data-back="s-info" data-step="2">
+    <p class="eyebrow">2단계 · 관상</p>
+    <h2 class="h1">얼굴을 보여 주세요</h2>
+    <p class="body">정면 사진 한 장이면 충분해요.</p>
+    <div class="privacy consent" id="consentBox"><span data-lock></span><div>
+      <b>사진은 내 기기 안에서만 분석해요</b>
+      <ul>
+        <li>올린 사진은 이 브라우저 안에서 얼굴형과 눈·코·입·이마 비율을 재서 인상 키워드를 만드는 데만 써요.</li>
+        <li>사진은 서버로 보내지 않고 저장하지 않아요. 분석이 끝나면 바로 지워지고, 창을 닫으면 남지 않아요.</li>
+        <li>얼굴로 누구인지 알아보거나 다른 사람과 같은 사람인지 비교하지 않아요.</li>
+        <li>본인 사진만 올려 주세요. 다른 사람 사진은 올리지 말아 주세요.</li>
+        <li>사진을 올리지 않아도 사주와 성격유형 결과는 볼 수 있어요.</li>
+      </ul>
+      <label class="check"><input type="checkbox" id="consent"><i></i>위 내용을 확인했고, 내 사진으로 관상 풀이를 볼게요.</label>
+    </div></div>
+    <div class="upload card" id="upload" data-state="empty">
+      <div class="frame">
+        <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+        <div class="empty-art" data-face="gold"></div>
+        <canvas id="faceCanvas"></canvas>
+        <div class="scan"></div>
+      </div>
+      <div class="up-empty">
+        <label class="btn secondary sm"><input type="file" accept="image/*" capture="user" class="file" id="camInput">카메라로 찍기</label>
+        <label class="btn secondary sm"><input type="file" accept="image/*" class="file" id="albumInput">앨범에서 고르기</label>
+      </div>
+      <div class="up-progress">
+        <div class="prow"><span class="spin"></span><b id="progLabel">얼굴 특징 읽는 중</b><span class="pct" id="progPct">0%</span></div>
+        <div class="progress"><i id="progBar"></i></div>
+        <p class="cap" id="progSub">눈매 · 코 · 입꼬리 · 얼굴형 확인 중</p>
+      </div>
+      <div class="up-done"><p class="done-title" id="doneTitle"></p><div class="chips" id="doneChips"></div></div>
+      <div class="up-fail"><p class="done-title">얼굴을 찾지 못했어요 <svg class="e-icon e-icon-face" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none" aria-hidden="true" focusable="false"><path d="M32 5C18 5 10 17 12 33C14 48 24 59 32 59C40 59 50 48 52 33C54 17 46 5 32 5Z" stroke="#D6B579" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/><path d="M21 29L26 28M38 28L43 29M32 28V36L29 38M27 45Q32 48 37 45" stroke="#D6B579" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></p><p class="cap">밝은 곳에서 정면을 보고, 이마가 보이게 다시 찍어 볼까요? 사진 없이도 사주와 성격유형 풀이는 볼 수 있어요.</p></div>
+    </div>
+    <p class="cap" style="margin-top:12px">재미로 보는 콘텐츠예요. 과학적 판단이나 미래 예측이 아니에요.<br>사진은 내 기기 안에서만 분석하고, 저장하거나 전송하지 않아요.</p>
+    <div class="chips tips"><span class="chip jade"><svg class="e-icon e-icon-check" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none" aria-hidden="true" focusable="false"><path d="M14 32L26 44L51 18" stroke="#D6B579" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg> 정면</span><span class="chip jade"><svg class="e-icon e-icon-check" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none" aria-hidden="true" focusable="false"><path d="M14 32L26 44L51 18" stroke="#D6B579" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg> 밝은 곳</span><span class="chip"><svg class="e-icon e-icon-error" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none" aria-hidden="true" focusable="false"><path d="M18 18L46 46M46 18L18 46" stroke="#D6B579" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg> 선글라스·마스크</span></div>
+    <button class="linkbtn center" id="skipPhoto">사진 없이 볼래요 ›</button>
+    <div class="cta-bar two"><button class="btn secondary" id="rePick">다시 고르기</button><button class="btn primary" id="photoNext" disabled>사진을 골라 주세요</button></div>
+  </section>
+
+  <!-- 연령 확인 차단 -->
+  <section class="screen" id="s-age" data-back="s-info">
+    <div class="loading"><div class="portrait" style="width:150px;height:150px"><div class="pf" data-face="jade"></div></div>
+      <h2 class="h1" style="font-size:23px">아쉽지만 지금은 이용할 수 없어요</h2>
+      <p class="body">아쉽지만 <span data-app-name data-josa="은는"></span> 만 14세 이상부터 이용할 수 있어요. 생년월일을 잘못 입력했다면 다시 입력해 주세요.</p>
+      <button class="btn secondary" id="ageBack" style="margin-top:12px">생년월일 다시 입력하기</button></div>
+  </section>
+
+  <!-- 3. 로딩 -->
+  <section class="screen" id="s-loading" data-back=""><div class="loading"><span class="spin big"></span><p class="h2">풀이 준비 중…</p><p class="cap">관상, 사주, 성격유형을 하나로 섞고 있어요</p></div></section>
+
+  <!-- 4. 결과 -->
+  <section class="screen" id="s-result" data-back="s-photo" data-step="3">
+    <div id="result"></div>
+    <div class="cta-bar two"><button class="btn secondary" id="toMatch">친구랑 비교</button><button class="btn primary" id="saveCard">결과 카드 저장하기</button><p class="cta-cap">재미로 보는 콘텐츠예요. 과학적 판단이나 미래 예측이 아니에요.</p></div>
+  </section>
+  <!-- 5. 운세 탭 (화면시안 09) -->
+  <section class="screen" id="s-fortune" data-back="s-result">
+    <h2 class="f-title">운세</h2>
+    <div id="fHome"></div>
+    <nav class="f-nav"><button id="navType"><b><svg class="e-icon e-icon-fortune" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none" aria-hidden="true" focusable="false"><path d="M54 32A22 22 0 1 1 10 32A22 22 0 1 1 54 32Z" stroke="#D6B579" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/><path d="M22 22V42M29 18V46M36 18V46M43 22V42" stroke="#D6B579" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/><path d="M19 27H25M26 24H32M33 24H39M40 27H46M19 37H25M26 40H32M33 40H39M40 37H46" stroke="#D6B579" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></b>내 타입</button><button class="on" id="navFortune"><b><svg class="e-icon e-icon-clock" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none" aria-hidden="true" focusable="false"><path d="M54 32A22 22 0 1 1 10 32A22 22 0 1 1 54 32Z" stroke="#D6B579" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/><path d="M32 18V33L43 39" stroke="#D6B579" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></b>운세</button><button id="navMatch"><b><svg class="e-icon e-icon-connect" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none" aria-hidden="true" focusable="false"><path d="M36 32A14 14 0 1 1 8 32A14 14 0 1 1 36 32Z" stroke="#D6B579" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/><path d="M56 32A14 14 0 1 1 28 32A14 14 0 1 1 56 32Z" stroke="#D6B579" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/><path d="M26 27L38 37M26 37L38 27" stroke="#D6B579" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></b>궁합</button></nav>
+  </section>
+  <!-- 5-1. 오늘·내일·모레의 운세 (화면시안 10) -->
+  <section class="screen" id="s-fday" data-back="s-fortune">
+    <div id="fDay"></div>
+    <div class="cta-bar two"><button class="btn secondary" id="fDayShare">오늘 카드 공유</button><button class="btn primary" id="fDayNext"><svg class="e-icon e-icon-fortune" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none" aria-hidden="true" focusable="false"><path d="M54 32A22 22 0 1 1 10 32A22 22 0 1 1 54 32Z" stroke="#D6B579" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/><path d="M22 22V42M29 18V46M36 18V46M43 22V42" stroke="#D6B579" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/><path d="M19 27H25M26 24H32M33 24H39M40 27H46M19 37H25M26 40H32M33 40H39M40 37H46" stroke="#D6B579" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg> 내일 운세 미리 보기</button><p class="cta-cap">재미로 보는 콘텐츠예요 · 점수와 풀이는 같은 규칙으로 계산돼요</p></div>
+  </section>
+  <!-- 5-2. 2027 신년운세 -->
+  <section class="screen" id="s-year" data-back="s-fortune">
+    <div id="fYear"></div>
+    <div class="cta-bar two"><button class="btn secondary" id="fYearShare">신년운세 공유</button><button class="btn primary" id="fYearHome">운세 홈으로</button><p class="cta-cap">재미로 보는 콘텐츠예요 · 중요한 결정은 스스로 판단해 주세요</p></div>
+  </section>
+  <!-- 5-3. 7일 출석 체크 (화면시안 11) -->
+  <section class="screen" id="s-attend" data-back="s-fortune">
+    <div id="fAttend"></div>
+    <div class="cta-bar"><button class="btn primary" id="attCta">오늘 보상 보기</button><p class="cta-cap">재미로 보는 콘텐츠예요 · 출석 보상은 앱 안에서만 보는 콘텐츠예요</p></div>
+  </section>
+  <!-- 5-4. 완주 보상 (화면시안 12) -->
+  <section class="screen" id="s-reward" data-back="s-attend">
+    <div id="fReward"></div>
+    <div class="cta-bar two"><button class="btn secondary" id="rwClose">닫기</button><button class="btn primary" id="rwSave">완주 카드 저장하기</button><p class="cta-cap">재미로 보는 콘텐츠예요 · 새 회차는 내일 1일차부터 시작돼요</p></div>
+  </section>
+  <footer class="legal global">MBTI, Myers-Briggs, Myers-Briggs Type Indicator는 Myers &amp; Briggs Foundation, Inc.의 미국 및 기타 국가 상표 또는 등록상표예요. <span data-app-name data-josa="은는"></span> Myers &amp; Briggs Foundation, The Myers-Briggs Company, 16Personalities(NERIS Analytics Limited)와 관련이 없고, 공식 검사를 제공하지 않아요. 성격유형은 직접 입력한 네 글자, 12개 문항 응답을 앱 규칙으로 계산한 결과, 또는 사진 특징으로 본 재미용 추정으로 구분해 표시해요. 사진 추정은 얼굴 비율에 앱 규칙을 적용한 값이며 검증된 성격이나 직접 입력한 값이 아니에요. 사진 분석·추정은 이 브라우저 안에서 처리하고 사진을 서버로 보내거나 브라우저 저장소에 보관하지 않아요.</footer>
+</div>
+<canvas id="cardCanvas" width="1080" height="1920" hidden></canvas>
+<div class="toast hidden" id="toast"></div>
+<div class="modal hidden" id="attSheet" role="dialog" aria-modal="true"><div class="sheet">
+  <h3 class="h2">출석 체크를 하려면 이 기기에 출석 기록을 저장해야 해요</h3>
+  <ul class="att-ul"><li><b>저장하는 것</b> 운세를 본 날짜(최근 14일), 이번 회차 일차, 완주 횟수, 마지막 완주 날짜(완주 후 7일까지), ‘쉬어 가기’ 사용 여부만.</li><li><b>저장하지 않는 것</b> 사진, 생년월일, 태어난 시간, 이름, 성격유형, 운세 결과.</li><li>출석 기록은 이 기기의 브라우저에만 남고, 이 기기 밖으로 보내지 않아요. 운영자도 볼 수 없어요.</li><li>같은 기기·브라우저를 쓰는 사람은 출석 기록을 볼 수 있어요. 시크릿 창이나 브라우저 설정에 따라 기록이 사라질 수 있어요.</li><li>끄고 싶으면 출석 화면의 ‘출석 기록 지우기’를 누르면 돼요. 기록이 모두 지워지고 출석 체크가 꺼져요.</li></ul>
+  <div class="sheet-btns"><button class="btn secondary" id="attNo">안 할래요</button><button class="btn primary" id="attOn">출석 켜기</button></div>
+  <p class="cap" style="text-align:center;margin-top:10px">재미로 보는 콘텐츠예요 · 출석을 켜지 않아도 모든 운세를 볼 수 있어요</p></div></div>
+<div class="modal hidden" id="clrSheet" role="dialog" aria-modal="true"><div class="sheet">
+  <h3 class="h2">출석 기록을 지울까요?</h3>
+  <p class="body" style="margin:10px 0 16px">저장된 출석 기록(날짜·회차·완주 기록)이 모두 지워지고, 출석 체크가 꺼져요.</p>
+  <div class="sheet-btns"><button class="btn secondary" id="clrNo">취소</button><button class="btn primary" id="clrYes">지우기</button></div></div></div>
+<div class="modal hidden" id="soonModal" role="dialog" aria-modal="true"><div class="sheet">
+  <h3 class="h2">아직 준비 중이에요</h3>
+  <p class="body" style="margin:10px 0 16px">심층 리포트는 아직 정식 출시 전이에요. 지금 누른 버튼으로 결제된 금액은 없어요. 어떤 리포트를 원하시는지 알아보려고 버튼을 먼저 열어 뒀어요. 무료 결과 카드는 지금 바로 계속 볼 수 있어요.</p>
+  <button class="btn primary" id="soonClose">무료 결과 계속 보기</button></div></div>
+
+<script src="js/config.js?v=12q"></script>
+<script src="js/josa.js?v=12q"></script>
+<script src="js/vendor/lunar.js?v=12q"></script>
+<script src="js/vendor/face-api.min.js?v=12q"></script>
+<script src="js/vendor/face-models.js?v=12q"></script>
+<script src="js/saju.js?v=12q"></script>
+<script src="js/texts.js?v=12q"></script>
+<script src="js/mbti.js?v=12q"></script>
+<script src="js/face.js?v=12q"></script>
+<script src="js/reading.js?v=12q"></script>
+<script src="js/animal-art.js?v=12q"></script>
+<script src="js/icons.js?v=12q"></script>
+<script src="js/art.js?v=12q"></script>
+<script src="js/fortune.js?v=12q"></script>
+<script src="js/attend.js?v=12q"></script>
+<script src="js/card.js?v=12q"></script>
+<script src="js/explain.js?v=12q"></script>
+<script src="js/app.js?v=12q"></script>
+<script src="js/v12.js?v=12q"></script>
+</body>
+</html>
