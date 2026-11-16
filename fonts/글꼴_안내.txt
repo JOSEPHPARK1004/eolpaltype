@@ -1,0 +1,15 @@
+글꼴 안내 (얼팔타입 웹앱, 2026-10-30)
+
+1. EolpalSans-Regular/Medium/SemiBold/Bold.woff2
+   - 원본: Pretendard v1.3.9 (Copyright (c) 2021, Kil Hyung-jin, https://github.com/orioncactus/pretendard)
+   - 라이선스: SIL Open Font License 1.1, 예약 글꼴명(Reserved Font Name) 'Pretendard' → 전문: Pretendard_LICENSE.txt
+   - 수정 내용: 화면에 필요한 글자(한글 완성형 2,350자·영문·숫자·기호 등, 글리프 2,798개)만 남기도록 우리가 직접 줄였어요(서브셋).
+     OFL 1.1 제3조에 따라 수정본에는 예약 글꼴명을 쓸 수 없어서, 글꼴 안의 이름(name 테이블)과 CSS 이름을 'EolpalSans'로 바꿨어요.
+     글자 모양은 바꾸지 않았어요. 저작권 표시(name ID 0)는 원본 그대로 두었어요.
+2. GowunBatang-Bold-subset.woff2
+   - 원본: Gowun Batang (Copyright 2021 The Gowun Batang Project Authors), SIL OFL 1.1, 예약 글꼴명 없음 → 전문: GowunBatang_OFL.txt
+   - 수정 내용: 필요한 글자만 남긴 서브셋. 예약 글꼴명이 없어 이름은 그대로 써요.
+3. NotoSerifKR-hanja-subset.woff2 (CSS 이름 "Noto Serif KR Hanja")
+   - 원본: Noto Serif KR, SIL OFL 1.1 → 전문: NotoSerifKR_OFL.txt (Google Fonts 저장소 ofl/notoserifkr/OFL.txt와 같은 내용)
+   - 수정 내용: 오행·천간·지지·삼정 한자 36글리프만 남긴 서브셋.
+   - 참고: 글꼴 파일 안 저작권 표시는 "(c) 2017-2024 Adobe"이고, Google 배포 OFL.txt 첫 줄은 "Copyright 2012 Google Inc."예요(원본 배포본 자체가 그래요).
