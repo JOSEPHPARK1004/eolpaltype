@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://josephpark1004.github.io/eolpaltype/sitemap.xml
+Sitemap: https://eolpaltype.com/sitemap.xml
