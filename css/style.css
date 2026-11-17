@@ -267,3 +267,4 @@ ul.ls{padding-left:18px}ul.ls li{margin:6px 0;font-size:14.5px;line-height:1.65}
 .att-ul{margin:10px 0 16px;padding-left:18px;font-size:14px;line-height:1.6;color:var(--hanji-2)}.att-ul li{margin:4px 0}.att-ul b{color:var(--hanji);margin-right:4px}
 .sheet-btns{display:grid;grid-template-columns:1fr 1fr;gap:10px} /* 두 버튼 같은 너비(법무 권고) */
 .f-ring-n b{font-size:40px!important;line-height:1}.f-fchips{display:flex;flex-wrap:wrap;gap:6px}.f-fields-n{padding:12px 14px} /* 내일 화면: 점수 없이 (v11.4) */
+@media (max-width:380px){.birth-row{grid-template-columns:112px minmax(0,1fr)}.field.date{min-width:0}.field.date input{width:2.6em}.field.date input#by{width:3.2em}}
